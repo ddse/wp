@@ -17,36 +17,10 @@
  *
  * @package WordPress
  */
- // Include the Composer autoload file.
+
+// ** MySQL settings - You can get this info from your web host ** //
+
 require_once( __DIR__ . '/vendor/autoload.php' );
-define('DISALLOW_FILE_EDIT', true);
-define('DISALLOW_FILE_MODS', true);
-define('DISABLE_WP_CRON', filter_var(getenv("DISABLE_WP_CRON"), FILTER_VALIDATE_BOOLEAN));
-define('FORCE_SSL_LOGIN', filter_var(getenv("FORCE_SSL"),       FILTER_VALIDATE_BOOLEAN));
-define('FORCE_SSL_ADMIN', filter_var(getenv("FORCE_SSL"),       FILTER_VALIDATE_BOOLEAN));
-/**
- * Define site and home URLs
- */
-$scheme = 'http';
-if ((isset( $_SERVER['HTTP_USER_AGENT_HTTPS'] ) && $_SERVER['HTTP_USER_AGENT_HTTPS'] == 'ON') || strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
-	$_SERVER['HTTPS']='on';
-	$scheme = 'https';
-}
-$site_url = $scheme . '://' . $_SERVER['HTTP_HOST'];
-define('WP_HOME',    $site_url         );
-define('WP_SITEURL', $site_url . '/cms');
-/*
-* Define wp-content directory outside of WordPress core directory
-*/
-define('WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content'   );
-define('WP_CONTENT_URL', WP_HOME .             '/wp-content'   );
-// Sendgrid settings - Read in the sendgrid auth from the config //
-define('SENDGRID_AUTH_METHOD',  'credentials'                  );
-define('SENDGRID_USERNAME',     getenv("SENDGRID_USERNAME")    );
-define('SENDGRID_PASSWORD',     getenv("SENDGRID_PASSWORD")    );
-// S3 Config Info - read the S3 Access Keys from the config //
-define('AWS_ACCESS_KEY_ID',     getenv("AWS_ACCESS_KEY_ID")    );
-define('AWS_SECRET_ACCESS_KEY', getenv("AWS_SECRET_ACCESS_KEY"));
 // ** DB settings - from Heroku Environment ** //
 if (getenv("JAWSDB_URL")) {
 	$db = parse_url(getenv("JAWSDB_URL"));
@@ -66,11 +40,7 @@ define('DB_PASSWORD', $db["pass"]          );
 define('DB_HOST',     $db["host"]          );
 define('DB_CHARSET', 'utf8mb4'             );
 define('DB_COLLATE', ''                    );
-// ** Heroku Redis settings - from Heroku Environment ** //
-$redis = parse_url(getenv("REDIS_URL")    );
-define('WP_REDIS_HOST',     $redis["host"]);
-define('WP_REDIS_PORT',     $redis["port"]);
-define('WP_REDIS_PASSWORD', $redis["pass"]);
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *
