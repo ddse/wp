@@ -1,0 +1,24 @@
+{
+  "name": "ddse/wordpress",
+  "description": "WordPress is web software you can use to create a beautiful website or blog.",
+  "keywords": ["wordpress","blog", "cms" ],
+  "type": "package",
+  "homepage": "http://wordpress.org/",
+  "license": "GPL-2.0+",
+  "require": {
+		"php": "5.6.*|7.*",
+		"ext-curl": "*",
+		"ext-gd": "*",
+		"ext-mbstring": "*",
+		"johnpbloch/wordpress": "^4.8"
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org"
+		}
+	],
+	"extra": {
+		"wordpress-install-dir": "wordpress"
+	}
+}
